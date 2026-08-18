@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # The name of our service
+  frontend:
+    # Build the image from the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Name the container for easy reference
+    container_name: budget_tracker_frontend
+    # Map port 3000 on your local machine to port 3000 in the container
+    ports:
+      - "3000:3000"
+    # Mount the local source code into the container
+    # This enables live reloading when you edit files
+    volumes:
+      - .:/app
+      # Also, mount a volume for node_modules to prevent local modules from overwriting container modules
+      - /app/node_modules
+    # Set the NEXT_PUBLIC_API_URL environment variable
+    # This is how your frontend will know where to find your backend API
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080/api
+    restart: unless-stopped

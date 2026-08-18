@@ -1,0 +1,27 @@
+{
+  "name": "Budget Tracker Dev Container",
+  "build": {
+    // Tells VS Code to use the Dockerfile in this folder
+    "dockerfile": "Dockerfile",
+    // Sets the build context to your project's root folder
+    "context": ".."
+  },
+
+  // Forward your Next.js app's port
+  "forwardPorts": [3000],
+
+  // This command will automatically run `npm install`
+  // after the container is created for the first time.
+  "postCreateCommand": "npm install",
+
+  // Optional: Tells VS Code to install these extensions
+  // inside the container for a better experience.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Prisma.prisma",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}
